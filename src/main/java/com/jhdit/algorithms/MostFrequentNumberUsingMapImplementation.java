@@ -33,7 +33,7 @@ public class MostFrequentNumberUsingMapImplementation implements MostFrequentNum
     }
 
     private Map<Integer, Integer> toFrequencyMap(List<Integer> numbers) {
-        Map<Integer, Integer> map = new HashMap();
+        Map<Integer, Integer> map = new HashMap<>();
         for(Integer number: numbers) {
             if (map.containsKey(number))    {
                 int currentValue = map.get(number);
