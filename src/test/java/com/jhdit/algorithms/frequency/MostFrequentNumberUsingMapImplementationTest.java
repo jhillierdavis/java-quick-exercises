@@ -2,7 +2,9 @@ package com.jhdit.algorithms.frequency;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,11 +40,12 @@ public class MostFrequentNumberUsingMapImplementationTest {
     @Test
     public void testWithUniqueResult() {
         // Given
-        String setOfNumbers = "4,2,3,4,7,7,8,4,6,5,3";
+        String[] array = "4,2,3,4,7,7,8,4,6,5,3".split("\\s*,\\s*");
+        List<Integer> numberList = Arrays.asList(array).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         Integer expectedMostCommon = 4;
 
         // When
-        Integer mostCommon = sut.mostCommonNumber(Arrays.asList(4,2,3,4,7,7,8,4,6,5,3));
+        Integer mostCommon = sut.mostCommonNumber(numberList);
 
         // Then
         Assertions.assertEquals(expectedMostCommon, mostCommon);
