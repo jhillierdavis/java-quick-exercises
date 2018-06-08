@@ -8,7 +8,7 @@ import java.util.Map;
  * Given a list of numbers return the most frequently occurring number
  */
 
-public class MostFrequentNumberImplementation implements MostFrequentNumber {
+public class MostFrequentNumberUsingMapImplementation implements MostFrequentNumber {
     public Integer mostCommonNumber(List<Integer> numbers) {
 
         Map<Integer, Integer> map = new HashMap();
