@@ -31,18 +31,17 @@ public class MostFrequentNumberUsingMapImplementationTest {
         Assertions.assertEquals(new Integer(-1), mostCommon);
     }
 
-    @ParameterizedTest
-    @CsvSource({"4,4", "7,7"})
-    public void parameterized(Integer input, Integer output) {
-        Assertions.assertEquals(input, output);
-    }
-
-    @Test
-    public void testWithUniqueResult() {
+    @DisplayName("unique match expected")
+    @ParameterizedTest(name = "{index} ==> inputNumbers=''{0}'', expected={1}")
+    @CsvSource({
+            "'4,2,3,4,7,7,8,4,6,5,3',4",
+            "'1,2,2,3,3,3',3",
+            "'99, 27, 99, 50',99"
+    })
+    public void testWithUniqueResult(String inputNumbers, Integer expectedMostCommon) {
         // Given
-        String[] array = "4,2,3,4,7,7,8,4,6,5,3".split("\\s*,\\s*");
+        String[] array = inputNumbers.split("\\s*,\\s*");
         List<Integer> numberList = Arrays.asList(array).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
-        Integer expectedMostCommon = 4;
 
         // When
         Integer mostCommon = sut.mostCommonNumber(numberList);
