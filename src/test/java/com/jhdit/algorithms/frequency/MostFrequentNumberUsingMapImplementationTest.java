@@ -39,8 +39,7 @@ public class MostFrequentNumberUsingMapImplementationTest {
     })
     public void testWithUniqueResult(String inputNumbers, Integer expectedMostCommon) {
         // Given
-        String[] array = inputNumbers.split("\\s*,\\s*");
-        List<Integer> numberList = Arrays.asList(array).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+        List<Integer> numberList = toIntegerList(inputNumbers);
 
         // When
         Integer mostCommon = sut.mostCommonNumber(numberList);
@@ -48,6 +47,7 @@ public class MostFrequentNumberUsingMapImplementationTest {
         // Then
         Assertions.assertEquals(expectedMostCommon, mostCommon);
     }
+
 
     @DisplayName("single (first) result expected for multiple matches")
     @ParameterizedTest(name = "{index} ==> inputNumbers=''{0}'', expected={1}")
@@ -57,14 +57,17 @@ public class MostFrequentNumberUsingMapImplementationTest {
     })
     public void testWithMultipleResults(String inputNumbers, Integer expectedMostCommon) {
         // Given: a list of numbers where multiple are the most frequent
-        // Given
-        String[] array = inputNumbers.split("\\s*,\\s*");
-        List<Integer> numberList = Arrays.asList(array).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+        List<Integer> numberList = toIntegerList(inputNumbers);
 
         // When
         Integer mostCommon = sut.mostCommonNumber(numberList);
 
         // Then: the first of the most frequent numbers is returned
         Assertions.assertEquals(expectedMostCommon, mostCommon);
+    }
+
+    private List<Integer> toIntegerList(String inputNumbers) {
+        String[] array = inputNumbers.split("\\s*,\\s*");
+        return Arrays.asList(array).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
     }
 }
