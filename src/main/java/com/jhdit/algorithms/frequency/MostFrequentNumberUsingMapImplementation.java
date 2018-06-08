@@ -1,4 +1,4 @@
-package com.jhdit.algorithms;
+package com.jhdit.algorithms.frequency;
 
 import java.util.HashMap;
 import java.util.List;
