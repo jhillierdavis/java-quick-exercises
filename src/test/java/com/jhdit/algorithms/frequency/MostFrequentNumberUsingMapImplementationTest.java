@@ -49,15 +49,22 @@ public class MostFrequentNumberUsingMapImplementationTest {
         Assertions.assertEquals(expectedMostCommon, mostCommon);
     }
 
-    @Test
-    public void testWithMultipleResults() {
+    @DisplayName("single (first) result expected for multiple matches")
+    @ParameterizedTest(name = "{index} ==> inputNumbers=''{0}'', expected={1}")
+    @CsvSource({
+            "'1,1,1,2,2,2',1",
+            "'7,5,5,7',5"
+    })
+    public void testWithMultipleResults(String inputNumbers, Integer expectedMostCommon) {
         // Given: a list of numbers where multiple are the most frequent
-        List<Integer> setOfNumbers = Arrays.asList(1,1,1,2,2,2);
+        // Given
+        String[] array = inputNumbers.split("\\s*,\\s*");
+        List<Integer> numberList = Arrays.asList(array).stream().mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
 
         // When
-        Integer mostCommon = sut.mostCommonNumber(setOfNumbers);
+        Integer mostCommon = sut.mostCommonNumber(numberList);
 
         // Then: the first of the most frequent numbers is returned
-        Assertions.assertEquals(new Integer(1), mostCommon);
+        Assertions.assertEquals(expectedMostCommon, mostCommon);
     }
 }
