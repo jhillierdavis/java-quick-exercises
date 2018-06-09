@@ -9,27 +9,13 @@ import java.util.Map;
  */
 
 public class MostFrequentNumberUsingMapImplementation implements MostFrequentNumber {
+
+    @Override
     public Integer mostCommonNumber(List<Integer> numbers) {
 
         Map<Integer, Integer> map = toFrequencyMap(numbers);
 
         return findMostFrequentKey(map);
-    }
-
-    private Integer findMostFrequentKey(Map<Integer, Integer> map) {
-        int mostFrequentKey = -1;
-        int mostFrequentValue = -1;
-
-        for(Integer key: map.keySet())  {
-            int value = map.get(key);
-            if (value > mostFrequentValue)  {
-                mostFrequentKey = key;
-                mostFrequentValue = value;
-
-            }
-        }
-
-        return mostFrequentKey;
     }
 
     private Map<Integer, Integer> toFrequencyMap(List<Integer> numbers) {
@@ -44,5 +30,20 @@ public class MostFrequentNumberUsingMapImplementation implements MostFrequentNum
 
         }
         return map;
+    }
+
+    private Integer findMostFrequentKey(Map<Integer, Integer> map) {
+        int mostFrequentKey = -1;
+        int mostFrequentValue = -1;
+
+        for(Integer key: map.keySet())  {
+            int value = map.get(key);
+            if (value > mostFrequentValue)  {
+                mostFrequentKey = key;
+                mostFrequentValue = value;
+            }
+        }
+
+        return mostFrequentKey;
     }
 }
