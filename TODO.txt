@@ -1,0 +1,10 @@
+Most Frequent Number
+--------------------
+
+* Return a list (multiple, rather than single value)
+* Optional return type
+* Alternative implementations (streams)
+* Big O performance
+
+List Comparison
+---------------
