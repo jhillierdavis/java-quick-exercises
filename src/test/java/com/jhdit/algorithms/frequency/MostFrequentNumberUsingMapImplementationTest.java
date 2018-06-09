@@ -3,6 +3,7 @@ package com.jhdit.algorithms.frequency;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,10 @@ class MostFrequentNumberUsingMapImplementationTest {
         List<Integer> setOfNumbers = new ArrayList<>();
 
         // When
-        Integer mostCommon = sut.mostCommonNumber(setOfNumbers);
+        Set<Integer> mostCommonSet = sut.mostCommonNumber(setOfNumbers);
 
         // Then: -1 is returned
-        assertEquals(new Integer(-1), mostCommon);
+        assertTrue(mostCommonSet.isEmpty());
     }
 
     @DisplayName("unique match expected")
@@ -42,32 +43,38 @@ class MostFrequentNumberUsingMapImplementationTest {
         List<Integer> numberList = toIntegerList(inputNumbers);
 
         // When
-        Integer mostCommon = sut.mostCommonNumber(numberList);
+        Set<Integer> mostCommonSet = sut.mostCommonNumber(numberList);
 
         // Then
-        assertEquals(expectedMostCommon, mostCommon);
+        assertTrue(mostCommonSet.contains(expectedMostCommon));
     }
 
 
     @DisplayName("single (first) result expected for multiple matches")
     @ParameterizedTest(name = "{index} ==> inputNumbers=''{0}'', expected={1}")
     @CsvSource({
-            "'1,1,1,2,2,2',1",
-            "'7,5,5,7',5"
+            "'1,1,1,2,2,2,3','1,2'",
+            "'7,5,5,7','5,7'"
     })
-    void testWithMultipleResults(String inputNumbers, Integer expectedMostCommon) {
+    void testWithMultipleResults(String inputNumbers, String expectedNumbers) {
         // Given: a list of numbers where multiple are the most frequent
         List<Integer> numberList = toIntegerList(inputNumbers);
+        Set<Integer> expectedSet = toIntegerSet(expectedNumbers);
 
         // When
-        Integer mostCommon = sut.mostCommonNumber(numberList);
+        Set<Integer> mostCommonSet = sut.mostCommonNumber(numberList);
 
         // Then: the first of the most frequent numbers is returned
-        assertEquals(expectedMostCommon, mostCommon);
+        assertTrue(mostCommonSet.containsAll(expectedSet));
     }
 
     private List<Integer> toIntegerList(String inputNumbers) {
         String[] array = inputNumbers.split("\\s*,\\s*");
         return Arrays.stream(array).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+    }
+
+    private Set<Integer> toIntegerSet(String inputNumbers) {
+        String[] array = inputNumbers.split("\\s*,\\s*");
+        return Arrays.stream(array).mapToInt(Integer::parseInt).boxed().collect(Collectors.toSet());
     }
 }

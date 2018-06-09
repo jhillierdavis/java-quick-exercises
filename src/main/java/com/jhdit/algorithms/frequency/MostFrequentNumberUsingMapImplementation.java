@@ -1,8 +1,6 @@
 package com.jhdit.algorithms.frequency;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Given a list of numbers return the most frequently occurring number
@@ -11,7 +9,7 @@ import java.util.Map;
 public class MostFrequentNumberUsingMapImplementation implements MostFrequentNumber {
 
     @Override
-    public Integer mostCommonNumber(List<Integer> numbers) {
+    public Set<Integer> mostCommonNumber(List<Integer> numbers) {
 
         Map<Integer, Integer> map = toFrequencyMap(numbers);
 
@@ -32,18 +30,39 @@ public class MostFrequentNumberUsingMapImplementation implements MostFrequentNum
         return map;
     }
 
-    private Integer findMostFrequentKey(Map<Integer, Integer> map) {
-        int mostFrequentKey = -1;
-        int mostFrequentValue = -1;
+    private Set<Integer> findMostFrequentKey(Map<Integer, Integer> map) {
+
+        Optional<Integer> optionalHighestFrequency = getHighestFrequency(map);
+        if (!optionalHighestFrequency.isPresent())   {
+            return Collections.emptySet();
+        }
+        int mostFrequentValue = optionalHighestFrequency.get();
+
+
+        Set<Integer> set = new HashSet<>();
 
         for(Integer key: map.keySet())  {
             int value = map.get(key);
-            if (value > mostFrequentValue)  {
-                mostFrequentKey = key;
-                mostFrequentValue = value;
+            if (value == mostFrequentValue)  {
+
+                set.add(key);
             }
         }
 
-        return mostFrequentKey;
+        return set;
+    }
+
+    private Optional<Integer> getHighestFrequency(Map<Integer, Integer> map)    {
+        Collection<Integer> values = map.values();
+
+        return values.stream().max(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if (o1.intValue() > o2.intValue())  {
+                    return 1;
+                }
+                return -1;
+            }
+        });
     }
 }
