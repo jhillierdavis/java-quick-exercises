@@ -15,14 +15,13 @@ public class MostFrequentNumberUsingStreams implements MostFrequentNumber {
 
         if (optionalLong.isPresent())   {
             Long maxFrequency = optionalLong.get();
-            return frequencyMap.keySet().stream().filter(key -> frequencyMap.get(key) == maxFrequency).collect(Collectors.toSet());
+            return frequencyMap.keySet().stream().filter(key -> frequencyMap.get(key).equals( maxFrequency )).collect(Collectors.toSet());
 
         }
         return Collections.emptySet();
     }
 
     private Map<Integer, Long> createFrequencyMap(List<Integer> numbers)  {
-        Map<Integer, Long> frequencyMap = numbers.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        return frequencyMap;
+        return numbers.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
