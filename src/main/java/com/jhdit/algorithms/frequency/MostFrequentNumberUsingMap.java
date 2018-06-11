@@ -6,7 +6,7 @@ import java.util.*;
  * Given a list of numbers return the most frequently occurring number
  */
 
-public class MostFrequentNumberUsingMapImplementation implements MostFrequentNumber {
+public class MostFrequentNumberUsingMap implements MostFrequentNumber {
 
     @Override
     public Set<Integer> mostCommonNumber(List<Integer> numbers) {

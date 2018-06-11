@@ -15,9 +15,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 
-class MostFrequentNumberUsingMapImplementationTest {
+class MostFrequentNumberUsingMapTest {
     // Subject under test (SUT)
-    private MostFrequentNumber sut = new MostFrequentNumberUsingMapImplementation();
+    private MostFrequentNumber sut = new MostFrequentNumberUsingMap();
 
     @Test
     void testWithoutResult() {
@@ -69,12 +69,16 @@ class MostFrequentNumberUsingMapImplementationTest {
     }
 
     private List<Integer> toIntegerList(String inputNumbers) {
-        String[] array = inputNumbers.split("\\s*,\\s*");
+        String[] array = concatonatedStringToArray(inputNumbers);
         return Arrays.stream(array).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
     }
 
     private Set<Integer> toIntegerSet(String inputNumbers) {
-        String[] array = inputNumbers.split("\\s*,\\s*");
+        String[] array = concatonatedStringToArray(inputNumbers);
         return Arrays.stream(array).mapToInt(Integer::parseInt).boxed().collect(Collectors.toSet());
+    }
+
+    private String[] concatonatedStringToArray(String inputNumbers) {
+        return inputNumbers.split("\\s*,\\s*");
     }
 }

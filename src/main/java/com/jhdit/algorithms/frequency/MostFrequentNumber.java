@@ -13,10 +13,10 @@ public interface MostFrequentNumber {
      * [1,1,2] => [1]
      * [1,1,2,2] => [1,2]
      *
-     *
-     * @param A list of numbers
+     * @param numbers A list of numbers
      * @return Set of most frequency occurring numbers
      */
 
+    // TODO: Rename to findFrom
     Set<Integer> mostCommonNumber(List<Integer> numbers);
 }
