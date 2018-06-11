@@ -3,7 +3,10 @@ package com.jhdit.algorithms.frequency;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+/**
+ * Implementation of @{@link MostFrequentNumber} using Java Streams (primarily)
+ */
 
 public class MostFrequentNumberUsingStreams implements MostFrequentNumber {
 
@@ -23,5 +26,6 @@ public class MostFrequentNumberUsingStreams implements MostFrequentNumber {
 
     private Map<Integer, Long> createFrequencyMap(List<Integer> numbers)  {
         return numbers.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
     }
 }

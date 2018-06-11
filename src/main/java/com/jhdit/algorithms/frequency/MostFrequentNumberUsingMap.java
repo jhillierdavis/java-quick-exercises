@@ -3,7 +3,7 @@ package com.jhdit.algorithms.frequency;
 import java.util.*;
 
 /**
- * Given a list of numbers return the most frequently occurring number
+ * Implementation of @{@link MostFrequentNumber} using Java Map (primarily)
  */
 
 public class MostFrequentNumberUsingMap implements MostFrequentNumber {
