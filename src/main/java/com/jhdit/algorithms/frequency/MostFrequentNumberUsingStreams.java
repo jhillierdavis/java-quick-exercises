@@ -6,7 +6,7 @@ import java.util.Set;
 public class MostFrequentNumberUsingStreams implements MostFrequentNumber {
 
     @Override
-    public Set<Integer> mostCommonNumber(List<Integer> numbers) {
+    public Set<Integer> findFrom(List<Integer> numbers) {
         throw new RuntimeException("TODO: Implement");
     }
 }

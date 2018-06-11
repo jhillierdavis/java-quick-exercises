@@ -9,7 +9,7 @@ import java.util.*;
 public class MostFrequentNumberUsingMap implements MostFrequentNumber {
 
     @Override
-    public Set<Integer> mostCommonNumber(List<Integer> numbers) {
+    public Set<Integer> findFrom(List<Integer> numbers) {
 
         Map<Integer, Integer> map = toFrequencyMap(numbers);
 

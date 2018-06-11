@@ -25,7 +25,7 @@ class MostFrequentNumberUsingMapTest {
         List<Integer> setOfNumbers = new ArrayList<>();
 
         // When
-        Set<Integer> mostCommonSet = sut.mostCommonNumber(setOfNumbers);
+        Set<Integer> mostCommonSet = sut.findFrom(setOfNumbers);
 
         // Then: -1 is returned
         assertTrue(mostCommonSet.isEmpty());
@@ -43,7 +43,7 @@ class MostFrequentNumberUsingMapTest {
         List<Integer> numberList = toIntegerList(inputNumbers);
 
         // When
-        Set<Integer> mostCommonSet = sut.mostCommonNumber(numberList);
+        Set<Integer> mostCommonSet = sut.findFrom(numberList);
 
         // Then
         assertTrue(mostCommonSet.contains(expectedMostCommon));
@@ -62,23 +62,23 @@ class MostFrequentNumberUsingMapTest {
         Set<Integer> expectedSet = toIntegerSet(expectedNumbers);
 
         // When
-        Set<Integer> mostCommonSet = sut.mostCommonNumber(numberList);
+        Set<Integer> mostCommonSet = sut.findFrom(numberList);
 
         // Then: the first of the most frequent numbers is returned
         assertTrue(mostCommonSet.containsAll(expectedSet));
     }
 
     private List<Integer> toIntegerList(String inputNumbers) {
-        String[] array = concatonatedStringToArray(inputNumbers);
+        String[] array = concatenatedStringToArray(inputNumbers);
         return Arrays.stream(array).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
     }
 
     private Set<Integer> toIntegerSet(String inputNumbers) {
-        String[] array = concatonatedStringToArray(inputNumbers);
+        String[] array = concatenatedStringToArray(inputNumbers);
         return Arrays.stream(array).mapToInt(Integer::parseInt).boxed().collect(Collectors.toSet());
     }
 
-    private String[] concatonatedStringToArray(String inputNumbers) {
+    private String[] concatenatedStringToArray(String inputNumbers) {
         return inputNumbers.split("\\s*,\\s*");
     }
 }

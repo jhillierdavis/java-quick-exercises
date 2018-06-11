@@ -17,6 +17,5 @@ public interface MostFrequentNumber {
      * @return Set of most frequency occurring numbers
      */
 
-    // TODO: Rename to findFrom
-    Set<Integer> mostCommonNumber(List<Integer> numbers);
+    Set<Integer> findFrom(List<Integer> numbers);
 }
