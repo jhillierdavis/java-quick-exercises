@@ -55,11 +55,6 @@ public class MostFrequentNumberUsingMap implements MostFrequentNumber {
     private Optional<Integer> getHighestFrequency(Map<Integer, Integer> map)    {
         Collection<Integer> values = map.values();
 
-        return values.stream().max((o1, o2) -> {
-            if (o1 > o2)  {
-                return 1;
-            }
-            return -1;
-        });
+        return values.stream().max(Integer::compare);
     }
 }
