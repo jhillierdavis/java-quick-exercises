@@ -47,6 +47,7 @@ class MostFrequentNumberUsingMapTest {
 
         // Then
         assertTrue(mostCommonSet.contains(expectedMostCommon));
+        assertEquals(1, mostCommonSet.size());
     }
 
 
@@ -66,6 +67,7 @@ class MostFrequentNumberUsingMapTest {
 
         // Then: the first of the most frequent numbers is returned
         assertTrue(mostCommonSet.containsAll(expectedSet));
+        assertEquals(expectedSet.size(), mostCommonSet.size());
     }
 
     private List<Integer> toIntegerList(String inputNumbers) {
