@@ -7,10 +7,10 @@ import java.util.List;
  * Representation of a bag (non-unique entries) of integers, providing comparison functionality.
  */
 
-public class IntegerBag {
+class IntegerBag {
     List<Integer> numbers;
 
-    public IntegerBag(List<Integer> numbers) {
+    IntegerBag(List<Integer> numbers) {
         this.numbers = numbers;
     }
 

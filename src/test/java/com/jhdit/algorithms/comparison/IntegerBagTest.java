@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for @see IntegerBag
  */
 
-public class IntegerBagTest {
+class IntegerBagTest {
 
     @Test
     void testFindAllSmallerThan() {
