@@ -23,20 +23,21 @@ public class IntegerBag {
     List<Integer> findAllSmallerThan(List<Integer> numbersToCompare) {
         List<Integer> results = new ArrayList<>();
 
-
         for (Integer entry: numbers) {
-            boolean isLessThan = true;
-            for (Integer value : numbersToCompare) {
-                if (entry >= value)  {
-                    isLessThan = false;
-                    break;
-                }
-            }
-            if (isLessThan) {
+            if (isLessThan(entry, numbersToCompare)) {
                 results.add(entry);
             }
         }
         return results;
+    }
+
+    private boolean isLessThan(Integer entry, List<Integer> numbersToCompare) {
+        for (Integer value : numbersToCompare) {
+            if (entry >= value)  {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
