@@ -14,6 +14,12 @@ public class IntegerBag {
         this.numbers = numbers;
     }
 
+    /**
+     * Find all integers less than those in the list provided.
+     * @param numbersToCompare List of numbers to compare against
+     * @return List of integers in the bag that are less that the provided list.
+     */
+
     List<Integer> findAllSmallerThan(List<Integer> numbersToCompare) {
         List<Integer> results = new ArrayList<>();
 
