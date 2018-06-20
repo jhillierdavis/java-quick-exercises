@@ -7,6 +7,3 @@ Most Frequent Number
 --------------------
 
 * Big O performance
-
-List Comparison
----------------
