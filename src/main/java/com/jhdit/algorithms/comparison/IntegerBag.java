@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 class IntegerBag {
-    List<Integer> numbers;
+    private final List<Integer> numbers;
 
     IntegerBag(List<Integer> numbers) {
         this.numbers = numbers;
