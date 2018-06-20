@@ -30,6 +30,5 @@ class IntegerBagTest {
         assertFalse(lessThanList.isEmpty() , "Empty results list");
         assertEquals(lessThanList.size(), expectedList.size(), "List size mismatch, expected: " + expectedList.size() + " , actual: " + lessThanList.size() );
         assertTrue(lessThanList.containsAll(expectedList), "List content mismatch");
-
     }
 }
