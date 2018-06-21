@@ -13,6 +13,15 @@ public class ExecutorServiceBasedWorker implements Worker {
     public int doWork(List<Integer> messages) throws Exception {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
+        List<Callable<Integer>> callableTasks = createCallableTaskList(messages);
+
+        List<Future<Integer>> futures = executorService.invokeAll(callableTasks);
+        executorService.shutdown();
+
+        return joinToTotalSum(futures);
+    }
+
+    private List<Callable<Integer>> createCallableTaskList(List<Integer> messages) {
         List<Callable<Integer>> callableTasks = new ArrayList<>();
 
         for (Integer message: messages) {
@@ -20,11 +29,7 @@ public class ExecutorServiceBasedWorker implements Worker {
                 return sender.send(message);
             });
         }
-
-        List<Future<Integer>> futures = executorService.invokeAll(callableTasks);
-        executorService.shutdown();
-
-        return joinToTotalSum(futures);
+        return callableTasks;
     }
 
     private int joinToTotalSum(List<Future<Integer>> futures) throws Exception   {
