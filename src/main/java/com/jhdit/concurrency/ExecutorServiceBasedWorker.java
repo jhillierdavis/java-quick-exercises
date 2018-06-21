@@ -16,11 +16,9 @@ public class ExecutorServiceBasedWorker implements Worker {
         List<Callable<Integer>> callableTasks = new ArrayList<>();
 
         for (Integer message: messages) {
-            Callable<Integer> callable = () -> {
+            callableTasks.add(() -> {
                 return sender.send(message);
-            };
-
-            callableTasks.add(callable);
+            });
         }
 
         List<Future<Integer>> futures = executorService.invokeAll(callableTasks);
