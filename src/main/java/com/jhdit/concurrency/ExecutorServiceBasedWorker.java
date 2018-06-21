@@ -14,13 +14,13 @@ public class ExecutorServiceBasedWorker implements Worker {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
         List<Callable<Integer>> callableTasks = new ArrayList<>();
+
         for (Integer message: messages) {
-            callableTasks.add(new Callable<Integer>() {
-                @Override
-                public Integer call() throws Exception {
-                    return sender.send(message);
-                }
-            });
+            Callable<Integer> callable = () -> {
+                return sender.send(message);
+            };
+
+            callableTasks.add(callable);
         }
 
         List<Future<Integer>> futures = executorService.invokeAll(callableTasks);
