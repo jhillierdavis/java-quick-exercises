@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 class WorkerTest {
 
     /**
-     * TODO: Simulate some unacceptably slow sychronous process to be improved (speed up, without changing the artificial delay in SlowSender).
+     * Unit test to simulate some time-consuming work (implemented via an artificial delay in SlowSender)
+     * which would be unacceptably slow if implemented synchronously
      */
 
     @Test
