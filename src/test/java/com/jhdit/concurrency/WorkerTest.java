@@ -19,7 +19,8 @@ class WorkerTest {
     @Test
     void performWork() {
         // Setup
-        Worker worker = new SynchronousWorker();
+        // Worker worker = new SynchronousWorker();
+        Worker worker = new ExecutorServiceBasedWorker();
         int max = 10;
 
 
@@ -35,7 +36,7 @@ class WorkerTest {
 
     private List<Integer> createMessages(int max)  {
         List<Integer> messages = new ArrayList<>();
-        IntStream.range(1, max).forEach(i -> messages.add(i));
+        IntStream.range(1, max).forEach(messages::add);
         return messages;
     }
 }
