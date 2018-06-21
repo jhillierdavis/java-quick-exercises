@@ -26,6 +26,10 @@ public class ExecutorServiceBasedWorker implements Worker {
         List<Future<Integer>> futures = executorService.invokeAll(callableTasks);
         executorService.shutdown();
 
+        return joinToTotalSum(futures);
+    }
+
+    private int joinToTotalSum(List<Future<Integer>> futures) throws Exception   {
         int sum = 0;
         for(Future<Integer> future : futures)   {
             sum += future.get();
