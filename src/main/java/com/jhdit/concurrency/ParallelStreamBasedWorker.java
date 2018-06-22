@@ -1,6 +1,7 @@
 package com.jhdit.concurrency;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ParallelStreamBasedWorker implements Worker {
     private Sender sender = new SlowSender();
@@ -32,4 +33,34 @@ public class ParallelStreamBasedWorker implements Worker {
                     }
             }).sum();
     }
+
+/*
+    // Alternative implementation using collect()
+
+    private int calculateSumUsingStreams(List<Integer> messages) {
+        return messages.parallelStream().collect(Collectors.summingInt(m -> {
+            // Handle unchecked exception
+            try {
+                return this.sender.send(m);
+            } catch (InterruptedException ie) {
+                throw new RuntimeException(ie);
+            }
+        }));
+    }
+*/
+
+/*
+    // Alternative implementation using reduce()
+
+    private int calculateSumUsingStreams(List<Integer> messages) {
+        return messages.parallelStream().mapToInt(m -> {
+            // Handle unchecked exception
+            try {
+                return this.sender.send(m);
+            } catch (InterruptedException ie) {
+                throw new RuntimeException(ie);
+            }
+        }).reduce(0, Integer::sum);
+    }
+*/
 }
